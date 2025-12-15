@@ -1,0 +1,6 @@
+streamlit
+sentence-transformers
+pandas
+numpy
+scikit-learn
+pillow
