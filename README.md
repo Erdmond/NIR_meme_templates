@@ -15,8 +15,8 @@
 
 ```bash
 # 1. Клонировать репозиторий
-git clone https://github.com/[your-username]/nir-meme-search.git
-cd nir-meme-search
+git clone https://github.com/Erdmond/NIR_meme_templates
+cd NIR_meme_templates
 
 # 2. Установить зависимости
 pip install -r requirements.txt
