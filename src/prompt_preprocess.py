@@ -3,17 +3,7 @@ import pymorphy3
 import unicodedata
 
 class MemeSearchPreprocessor:
-    """
-    Интеллектуальный препроцессор для поиска мемов.
-    Адаптирован для модели paraphrase-multilingual-MiniLM-L12-v2.
-    """
-    
     def __init__(self, use_lemmatization: bool = True, fix_typos: bool = True):
-        """
-        Args:
-            use_lemmatization: применять ли лемматизацию
-            fix_typos: исправлять ли частые опечатки
-        """
         self.use_lemmatization = use_lemmatization
         self.fix_typos = fix_typos
         
@@ -48,7 +38,6 @@ class MemeSearchPreprocessor:
         }
     
     def normalize_text(self, text: str) -> str:
-        """Базовая нормализация текста"""
         if not text or not isinstance(text, str):
             return ""
         
@@ -59,12 +48,6 @@ class MemeSearchPreprocessor:
         return text
     
     def remove_special_chars(self, text: str, keep_hashtags: bool = True) -> str:
-        """
-        Удаляет специальные символы, но сохраняет смысл.
-        
-        Args:
-            keep_hashtags: сохранять ли хэштеги
-        """
         if keep_hashtags:
             hashtags = re.findall(r'#\w+', text)
             text = re.sub(r'#\w+', ' HASHTAG_PLACEHOLDER ', text)
@@ -90,7 +73,6 @@ class MemeSearchPreprocessor:
         return text
     
     def fix_common_typos(self, text: str) -> str:
-        """Исправляет частые опечатки"""
         if not self.fix_typos:
             return text
         
@@ -106,9 +88,6 @@ class MemeSearchPreprocessor:
         return ' '.join(corrected_words)
     
     def smart_lemmatization(self, text: str) -> str:
-        """
-        Умная лемматизация с исключениями для мем-культуры.
-        """
         if not self.use_lemmatization or not hasattr(self, 'morph'):
             return text
         
@@ -142,13 +121,6 @@ class MemeSearchPreprocessor:
         return ' '.join(lemmatized_words)
     
     def preprocess(self, text: str, for_search: bool = True) -> str:
-        """
-        Основной метод предобработки.
-        
-        Args:
-            text: входной текст
-            for_search: True если это поисковый запрос, False если это текст мема
-        """
         if not text:
             return ""
         
@@ -171,5 +143,4 @@ class MemeSearchPreprocessor:
         return text
     
     def preprocess_batch(self, texts: list[str], for_search: bool = True) -> list[str]:
-        """Пакетная обработка текстов"""
         return [self.preprocess(text, for_search) for text in texts]
