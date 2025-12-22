@@ -27,7 +27,7 @@ streamlit run app.py
 
 ### Онлайн демо
 
-📱 [Демо на Streamlit Cloud](https://[your-app-name].streamlit.app)
+📱 [Демо на Streamlit Cloud](https://nir-meme-templates.streamlit.app/)
 
 ## 🛠 Технологии
 
